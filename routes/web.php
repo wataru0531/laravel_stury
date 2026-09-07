@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\UtilityController;
 use App\Http\Controllers\GameController;
+use App\Http\Controllers\RequestSampleController;
+
+use App\Http\Controllers\EventController;
 
 // Route::get('/', function () {
 //   return view('welcome');
@@ -42,3 +45,31 @@ Route::get('/omikuji', [GameController::class, "omikuji"]);
 // 「ドアを選び直すことで、当たりが出る確率が2倍（1/3から2/3）に上がる」という、
 //  直感と論理が食い違う有名な確率論の問題
 Route::get('/monty-hall', [GameController::class, "montyHall"]);
+
+// ✅ リクエスト
+Route::get("/form", [RequestSampleController::class, "form"]);
+// リクエスト送信時の処理
+Route::get("/query-strings", [RequestSampleController::class, "queryStrings"]);
+
+// ✅ ユーザー個別ページ。idを受け取る
+// http://127.0.0.1:8000/users/1 → 1をControllerで受け取る
+// name() → 名前付きルート。/users/{id}のルートに名前をつける
+Route::get("/users/{id}", [RequestSampleController::class, "profile"])->name("profile");
+
+// ✅ 複数の値をControllerに渡す
+// → http://127.0.0.1:8000/products/suv/2026
+Route::get("/products/{category}/{year}", [RequestSampleController::class, "productsArchive"]);
+
+// 
+Route::get("/route-link", [RequestSampleController::class, "routeLink"]);
+
+
+// ✅ ログイン
+Route::get("/login", [RequestSampleController::class, "loginForm"]);
+
+// ログインページから送信
+Route::post("/login", [RequestSampleController::class, "login"])->name("login");
+
+// ✅ よくつかう７つのアクションを一挙に登録
+// → resource()で登録
+Route::resource("/events", EventController::class)->only(["index", "create", "store"]);

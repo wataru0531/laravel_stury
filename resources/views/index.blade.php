@@ -5,7 +5,7 @@
   index.blade.php → このページ固有の内容
 
   要は、index.blade.phpでは、default.blade.phpを基底に使って、
-  そこに渡す変数を@sectionで渡しているような感じ
+  そこに渡す変数をsectionで渡しているような感じ
 -->
 
 <!-- 
