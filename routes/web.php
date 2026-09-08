@@ -8,6 +8,8 @@ use App\Http\Controllers\RequestSampleController;
 
 use App\Http\Controllers\EventController;
 
+use App\Http\Controllers\HiLowController;
+
 // Route::get('/', function () {
 //   return view('welcome');
 // });
@@ -63,7 +65,6 @@ Route::get("/products/{category}/{year}", [RequestSampleController::class, "prod
 // 
 Route::get("/route-link", [RequestSampleController::class, "routeLink"]);
 
-
 // ✅ ログイン
 Route::get("/login", [RequestSampleController::class, "loginForm"]);
 
@@ -72,4 +73,8 @@ Route::post("/login", [RequestSampleController::class, "login"])->name("login");
 
 // ✅ よくつかう７つのアクションを一挙に登録
 // → resource()で登録
-Route::resource("/events", EventController::class)->only(["index", "create", "store"]);
+Route::resource("/events", EventController::class)->only(["create", "store"]);
+
+// ✅ ハイローゲーム
+Route::get('/hi-low', [HiLowController::class, 'index'])->name('hi-low');
+Route::post('/hi-low', [HiLowController::class, 'result']);
