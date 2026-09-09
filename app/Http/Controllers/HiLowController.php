@@ -7,8 +7,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 class HiLowController extends Controller {
-
-    // 1から12までのカードをランダムで選び、viewで表示
+    // 1から12までの数値をランダムに選択
     public function index() {
       $dealersNumber = random_int(1, 12);
 
