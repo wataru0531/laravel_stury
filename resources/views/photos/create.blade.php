@@ -18,7 +18,11 @@
     @csrf
     <div>
       <label for="image-label">画像: </label>
-      <input type="file" id="image-label" name="image">
+      <input 
+        type="file" 
+        id="image-label" 
+        name="image"
+      >
     </div>
 
     <button type="submit">アップロード</button>
